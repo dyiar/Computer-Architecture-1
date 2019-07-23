@@ -75,10 +75,15 @@ class CPU:
     def run(self):
         """Run the CPU."""
 
+        ir = self.ram[self.pc]
         operand_a = self.ram_read(self.pc +1)
         operand_b = self.ram_read(self.pc +2)
+
+        
+
         while self.running:
 
+            
 
             def find(x):
                 return {
@@ -87,10 +92,13 @@ class CPU:
                     'PRN': self.op_prn(operand_a)
                 }.get(x, 'HLT')
 
+            
+            find(ir)
+
     def op_ldi(self, operand_a, operand_b):
         self.register[operand_a] = operand_b
     
-    def op_hlt():
+    def op_hlt(self):
         self.running = False
     
     def op_prn(self, operand_a):
